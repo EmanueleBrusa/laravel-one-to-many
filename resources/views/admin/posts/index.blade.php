@@ -18,6 +18,9 @@
                                 <h2 class="fw-bold">Slug</h2>
                             </th>
                             <th class="bg-primary text-white" scope="col">
+                                <h2 class="fw-bold">Type</h2>
+                            </th>
+                            <th class="bg-primary text-white" scope="col">
                                 <h2 class="fw-bold">Azioni</h2>
                             </th>
                         </tr>
@@ -28,6 +31,7 @@
                                 <th class="bg-primary-subtle fw-bold" scope="row">{{ $post->id }}</th>
                                 <td class="bg-primary-subtle fw-bold">{{ $post->title }}</td>
                                 <td class="bg-primary-subtle fw-bold">{{ $post->slug }}</td>
+                                <td class="bg-primary-subtle fw-bold">{{ $post->type->name ?? '' }}</td>
                                 <td class="bg-primary-subtle fw-bold">
                                     <a class="btn btn-success btn-sm" href="{{route('admin.posts.show', $post->id)}}"><i class="fas fa-eye"></i></a>
                                     <a class="btn btn-warning btn-sm" href="{{ route('admin.posts.edit', $post->id) }}"><i class="fas fa-pen"></i></a>

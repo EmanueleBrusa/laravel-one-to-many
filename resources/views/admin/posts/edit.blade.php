@@ -21,6 +21,14 @@
                     @enderror
                 </div>
                 <div class="form-group mt-4">
+                    <label class="contol-lable">Tipologia</label>
+                    <select name="type_id" id="type" class="form-control">
+                        @foreach ($types as $type)
+                            <option value="{{ $type->id }}">{{ $type->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group mt-4">
                     <label class="control-label">Contenuto</label>
                     <textarea class="form-control @error('content') is-invalid @enderror" name="content" id="content"
                         placeholder="Contenuto">{{ old('content') ?? $post->content }}</textarea>

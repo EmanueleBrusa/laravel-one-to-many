@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Models\Post;
+use App\Models\Type;
 
 use Illuminate\Support\Facades\Storage;
 
@@ -18,7 +19,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::with('type')->get();
         return view('admin.posts.index', compact('posts'));
     }
 
@@ -29,7 +30,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('admin.posts.create');
+        $types = Type::get();
+        return view('admin.posts.create', compact('types'));
     }
 
     /**
@@ -78,7 +80,8 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('admin.posts.edit', compact('post'));
+        $types = Type::get();
+        return view('admin.posts.edit', compact('types','post'));
     }
 
     /**
@@ -93,7 +96,7 @@ class PostController extends Controller
         $form_data = $request->all();
 
         $form_data['slug'] =  $post->generateSlug($form_data['title']);
-
+        
         $post->update($form_data);
 
         return redirect()->route('admin.posts.index');

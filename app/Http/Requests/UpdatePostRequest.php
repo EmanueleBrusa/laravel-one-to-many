@@ -24,7 +24,8 @@ class UpdatePostRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|max:50'
+            'title' => 'required|max:50',
+            'type_id' => 'required|exists:types,id'
         ];
     }
 
